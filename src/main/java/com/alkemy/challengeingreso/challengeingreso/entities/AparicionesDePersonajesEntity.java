@@ -29,6 +29,6 @@ public class AparicionesDePersonajesEntity {
     private Set<ProduccionEntity> producciones;
 
     //@Column(name = "producciones_id", nullable = false)
-    //private List<Long> produccionesId;
+    //private Set<Long> produccionesId;
 
 }

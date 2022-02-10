@@ -27,5 +27,12 @@ public class ProduccionEntity {
 
     private Integer calificacion;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "genero_id", insertable = false, updatable = false)
+    private GeneroEntity genero;
+
+    @Column(name = "genero_id")
+    private Long generoId;
+
 
 }
