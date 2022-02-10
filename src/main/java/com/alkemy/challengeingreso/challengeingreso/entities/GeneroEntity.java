@@ -23,5 +23,5 @@ public class GeneroEntity {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "produccion_id", insertable = false, updatable = false)
-    private Set<ProduccionEntity> produccion;
+    private Set<ProduccionEntity> producciones;
 }
