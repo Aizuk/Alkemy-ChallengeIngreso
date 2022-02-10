@@ -4,8 +4,7 @@ import lombok.Setter;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "apariciones_de_personajes")
