@@ -24,11 +24,11 @@ public class AparicionesDePersonajesEntity {
     @Column(name = "personaje_id",nullable = false)
     private Long personajeId;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "produccion_id", insertable = false, updatable = false)
-    private Set<ProduccionEntity> producciones;
+    private ProduccionEntity produccion;
 
-    //@Column(name = "producciones_id", nullable = false)
-    //private Set<Long> produccionesId;
+    @Column(name = "produccion_id", nullable = false)
+    private Long produccionId;
 
 }
