@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "personaje")
@@ -22,4 +24,9 @@ public class PersonajeEntity {
     private Integer peso;
 
     private String historia;
+
+    @ManyToMany(mappedBy = "personajes", cascade = CascadeType.ALL)
+    private Set<ProduccionEntity> producciones = new HashSet<>();
+
+
 }

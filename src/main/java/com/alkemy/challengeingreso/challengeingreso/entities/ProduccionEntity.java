@@ -6,6 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "produccion")
@@ -33,6 +35,17 @@ public class ProduccionEntity {
 
     @Column(name = "genero_id")
     private Long generoId;
+
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(
+            name = "produccion_personaje",
+            joinColumns = @JoinColumn(name = "produccion_id"),
+            inverseJoinColumns = @JoinColumn(name = "personaje_id"))
+    private Set<PersonajeEntity> personajes = new HashSet<>();
 
 
 }
