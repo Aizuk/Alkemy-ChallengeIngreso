@@ -8,25 +8,25 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "personaje")
+@Table(name = "character")
 @Getter
 @Setter
-public class PersonajeEntity {
+public class CharacterEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private String nombre;
+    private String name;
 
-    private Integer edad;
+    private Integer age;
 
-    private Integer peso;
+    private Integer weight;
 
-    private String historia;
+    private String story;
 
-    @ManyToMany(mappedBy = "personajes", cascade = CascadeType.ALL)
-    private Set<ProduccionEntity> producciones = new HashSet<>();
+    @ManyToMany(mappedBy = "characters", cascade = CascadeType.ALL)
+    private Set<FilmEntity> films = new HashSet<>();
 
 
 }
