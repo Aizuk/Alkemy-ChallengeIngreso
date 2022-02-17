@@ -21,13 +21,11 @@ public class GenreServiceImpl implements GenreService {
     public GenreDTO save(GenreDTO dto){
         GenreEntity entity = genreMapper.genreDTO2Entity(dto);
         GenreEntity genreSaved = genreRepository.save(entity);
-        GenreDTO result = genreMapper.genreEntity2DTO(genreSaved);
-        return result;
+        return genreMapper.genreEntity2DTO(genreSaved);
     }
 
     public List<GenreDTO> getAllGenres() {
         List<GenreEntity> entities = genreRepository.findAll();
-        List<GenreDTO> result = genreMapper.genreEntity2DTOList(entities);
-        return result;
+        return genreMapper.genreEntity2DTOList(entities);
     }
 }

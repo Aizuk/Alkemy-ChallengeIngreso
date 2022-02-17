@@ -29,7 +29,7 @@ public class FilmEntity {
 
     private Integer rating;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "genre_id", insertable = false, updatable = false)
     private GenreEntity genre;
 
@@ -42,10 +42,10 @@ public class FilmEntity {
                     CascadeType.MERGE
             })
     @JoinTable(
-            name = "film_character",
+            name = "film_chracter",
             joinColumns = @JoinColumn(name = "film_id"),
-            inverseJoinColumns = @JoinColumn(name = "character_id"))
-    private Set<CharacterEntity> characters = new HashSet<>();
+            inverseJoinColumns = @JoinColumn(name = "chracter_id"))
+    private Set<ChracterEntity> chracters = new HashSet<>();
 
 
 }
