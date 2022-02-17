@@ -6,7 +6,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -45,7 +47,7 @@ public class FilmEntity {
             name = "film_chracter",
             joinColumns = @JoinColumn(name = "film_id"),
             inverseJoinColumns = @JoinColumn(name = "chracter_id"))
-    private Set<ChracterEntity> chracters = new HashSet<>();
+    private List<ChracterEntity> chracters = new ArrayList<>();
 
 
 }

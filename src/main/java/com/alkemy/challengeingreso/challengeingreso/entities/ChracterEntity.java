@@ -6,7 +6,9 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,7 +34,7 @@ public class ChracterEntity {
     private String story;
 
     @ManyToMany(mappedBy = "chracters", cascade = CascadeType.ALL)
-    private Set<FilmEntity> films = new HashSet<>();
+    private List<FilmEntity> films = new ArrayList<>();
 
     private Boolean deleted = Boolean.FALSE;
 

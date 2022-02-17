@@ -1,11 +1,13 @@
 package com.alkemy.challengeingreso.challengeingreso.mappers;
 
+import com.alkemy.challengeingreso.challengeingreso.dto.ChracterBasicDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.ChracterDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.FilmDTO;
 import com.alkemy.challengeingreso.challengeingreso.entities.ChracterEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -41,11 +43,27 @@ public class ChracterMapper {
         return dto;
     }
 
-    public Set<ChracterEntity> ChracterDTOList2Entity(List<ChracterDTO> dtos){
+    public Set<ChracterEntity> chracterDTOList2Entity(List<ChracterDTO> dtos){
         Set<ChracterEntity> entities = new HashSet<>();
         for (ChracterDTO dto: dtos) {
             entities.add(this.chracterDTO2Entity(dto));
         }
         return entities;
+    }
+
+    public List<ChracterDTO> chracterEntityList2DTOList(List<ChracterEntity> entities, boolean loadFilms){
+        List<ChracterDTO> dtos = new ArrayList<>();
+        for (ChracterEntity entity: entities) {
+            dtos.add(this.chracterEntity2DTO(entity, loadFilms));
+        }
+        return dtos;
+    }
+
+    public ChracterBasicDTO chracterEntity2BasicDTO(ChracterEntity entity){
+        ChracterBasicDTO dto = new ChracterBasicDTO();
+        dto.setId(entity.getId());
+        dto.setImage(entity.getImage());
+        dto.setName(entity.getName());
+        return dto;
     }
 }

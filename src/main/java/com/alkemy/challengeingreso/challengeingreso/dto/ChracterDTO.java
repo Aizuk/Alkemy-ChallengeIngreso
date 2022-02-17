@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ChracterDTO {
+public class ChracterDTO{
     private Long id;
     private String image;
     private String name;
