@@ -70,7 +70,7 @@ public class ChracterMapper {
     public List<ChracterBasicDTO> chracterEntityList2BasicDTOList(List<ChracterEntity> entities){
         List<ChracterBasicDTO> dtos = new ArrayList<>();
         for (ChracterEntity entity: entities) {
-            dtos.add(this.chracterEntity2BasicDTO(entity));
+            dtos.add(chracterEntity2BasicDTO(entity));
         }
         return dtos;
     }
