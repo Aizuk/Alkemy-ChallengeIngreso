@@ -28,4 +28,5 @@ public class GenreServiceImpl implements GenreService {
         List<GenreEntity> entities = genreRepository.findAll();
         return genreMapper.genreEntity2DTOList(entities);
     }
+
 }

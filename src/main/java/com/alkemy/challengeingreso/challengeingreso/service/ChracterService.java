@@ -9,7 +9,5 @@ public interface ChracterService {
 
     ChracterDTO save(ChracterDTO dto);
 
-    List<ChracterDTO> getAllChracter();
-
     List<ChracterBasicDTO> getAllChracterBasic();
 }

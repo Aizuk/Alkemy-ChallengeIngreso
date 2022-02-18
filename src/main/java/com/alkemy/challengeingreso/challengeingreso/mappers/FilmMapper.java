@@ -54,7 +54,9 @@ public class FilmMapper {
 
     public List<FilmDTO> filmEntityList2DTOList(List<FilmEntity> entities, boolean loadChracters){
         List<FilmDTO> films = new ArrayList<>();
-        //TODO:contenido
+        for (FilmEntity entity: entities) {
+            films.add(this.filmEntity2DTO(entity, loadChracters));
+        }
         return films;
     }
 }
