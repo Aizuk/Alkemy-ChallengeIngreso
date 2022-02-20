@@ -37,4 +37,8 @@ public class ChracterServiceImpl implements ChracterService {
         ChracterEntity chracterUpdated = chracterRepository.saveAndFlush(entity);
         return chracterMapper.chracterEntity2DTO(chracterUpdated, false);
     }
+
+    public void delete(Long id){
+        this.chracterRepository.deleteById(id);
+    }
 }

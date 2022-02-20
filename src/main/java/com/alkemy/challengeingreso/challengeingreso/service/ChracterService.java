@@ -12,4 +12,6 @@ public interface ChracterService {
     List<ChracterBasicDTO> getAllChracterBasic();
 
     ChracterDTO update(Long id, ChracterDTO dto);
+
+    void delete(Long id);
 }
