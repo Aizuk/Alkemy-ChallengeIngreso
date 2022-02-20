@@ -29,4 +29,15 @@ public class ChracterController {
         ChracterDTO chracterSaved = chracterService.save(chracter);
         return ResponseEntity.status(HttpStatus.CREATED).body(chracterSaved);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ChracterDTO> update(@PathVariable Long id, @RequestBody ChracterDTO chracter){
+        ChracterDTO chracterUpdated = chracterService.update(id, chracter);
+        return ResponseEntity.ok().body(chracterUpdated);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        return null;
+    }
 }

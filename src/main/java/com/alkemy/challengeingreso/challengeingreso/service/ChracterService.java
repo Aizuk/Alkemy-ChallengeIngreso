@@ -10,4 +10,6 @@ public interface ChracterService {
     ChracterDTO save(ChracterDTO dto);
 
     List<ChracterBasicDTO> getAllChracterBasic();
+
+    ChracterDTO update(Long id, ChracterDTO dto);
 }

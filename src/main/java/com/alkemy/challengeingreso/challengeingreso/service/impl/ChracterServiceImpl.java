@@ -30,4 +30,11 @@ public class ChracterServiceImpl implements ChracterService {
         List<ChracterEntity> entities = chracterRepository.findAll();
         return chracterMapper.chracterEntityList2BasicDTOList(entities);
     }
+
+    public ChracterDTO update(Long id, ChracterDTO dto){
+        ChracterEntity entity = chracterMapper.chracterDTO2Entity(dto);
+        entity.setId(id);
+        ChracterEntity chracterUpdated = chracterRepository.saveAndFlush(entity);
+        return chracterMapper.chracterEntity2DTO(chracterUpdated, false);
+    }
 }
