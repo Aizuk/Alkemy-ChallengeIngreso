@@ -44,7 +44,7 @@ public class FilmController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ChracterDTO> update(@PathVariable Long id, @RequestBody FilmDTO film){
+    public ResponseEntity<FilmDTO> update(@PathVariable Long id, @RequestBody FilmDTO film){
         FilmDTO filmUpdated = filmService.update(id, film);
         return ResponseEntity.ok().body(filmUpdated);
     }
