@@ -15,7 +15,7 @@ import java.util.function.Predicate;
 public class ChracterSpecification {
 
     public Specification<ChracterEntity> getByFilters(ChracterFiltesrDTO filtersDTO){
-        return (root, query, criteriaBuilder) -> {
+        /*return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
             if (StringUtils.hasLength(filtersDTO.getName())){
                 predicates.add(
@@ -25,6 +25,7 @@ public class ChracterSpecification {
                         )
                 );
             }
-        };
+        };*/
+        return null;
     }
 }
