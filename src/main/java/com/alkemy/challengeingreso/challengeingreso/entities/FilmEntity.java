@@ -2,6 +2,8 @@ package com.alkemy.challengeingreso.challengeingreso.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,6 +17,8 @@ import java.util.Set;
 @Table(name = "film")
 @Getter
 @Setter
+@SQLDelete(sql = "UPDATE chracter SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
 public class FilmEntity {
 
     @Id
@@ -48,6 +52,8 @@ public class FilmEntity {
             joinColumns = @JoinColumn(name = "film_id"),
             inverseJoinColumns = @JoinColumn(name = "chracter_id"))
     private List<ChracterEntity> chracters = new ArrayList<>();
+
+    private Boolean deleted = Boolean.FALSE;
 
 
 }

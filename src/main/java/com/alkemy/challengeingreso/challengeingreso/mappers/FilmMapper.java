@@ -2,7 +2,9 @@ package com.alkemy.challengeingreso.challengeingreso.mappers;
 
 import com.alkemy.challengeingreso.challengeingreso.dto.ChracterBasicDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.ChracterDTO;
+import com.alkemy.challengeingreso.challengeingreso.dto.FilmBasicDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.FilmDTO;
+import com.alkemy.challengeingreso.challengeingreso.entities.ChracterEntity;
 import com.alkemy.challengeingreso.challengeingreso.entities.FilmEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -60,5 +62,21 @@ public class FilmMapper {
             films.add(this.filmEntity2DTO(entity, loadChracters));
         }
         return films;
+    }
+
+    public FilmBasicDTO filmEntity2BasicDTO(FilmEntity entity){
+        FilmBasicDTO dto = new FilmBasicDTO();
+        dto.setImage(entity.getImage());
+        dto.setTitle(entity.getTitle());
+        dto.setCreationDate(entity.getCreationDate().toString());
+        return dto;
+    }
+
+    public List<FilmBasicDTO> filmEntityList2DTOBasicList(List<FilmEntity> entities){
+        List<FilmBasicDTO> dtos = new ArrayList<>();
+        for (FilmEntity entity: entities) {
+            dtos.add(filmEntity2BasicDTO(entity));
+        }
+        return dtos;
     }
 }

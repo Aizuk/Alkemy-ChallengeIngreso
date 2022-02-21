@@ -2,9 +2,11 @@ package com.alkemy.challengeingreso.challengeingreso.service.impl;
 
 import com.alkemy.challengeingreso.challengeingreso.dto.ChracterBasicDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.ChracterDTO;
+import com.alkemy.challengeingreso.challengeingreso.dto.ChracterFiltesrDTO;
 import com.alkemy.challengeingreso.challengeingreso.entities.ChracterEntity;
 import com.alkemy.challengeingreso.challengeingreso.mappers.ChracterMapper;
 import com.alkemy.challengeingreso.challengeingreso.repositories.ChracterRepository;
+import com.alkemy.challengeingreso.challengeingreso.repositories.specifications.ChracterSpecification;
 import com.alkemy.challengeingreso.challengeingreso.service.ChracterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ public class ChracterServiceImpl implements ChracterService {
     private ChracterMapper chracterMapper;
     @Autowired
     private ChracterRepository chracterRepository;
+    @Autowired
+    ChracterSpecification chracterSpecification;
 
     public ChracterDTO save(ChracterDTO dto){
         ChracterEntity entity = chracterMapper.chracterDTO2Entity(dto);
@@ -45,5 +49,12 @@ public class ChracterServiceImpl implements ChracterService {
     public ChracterDTO getChracter(Long id){
         ChracterEntity entity = chracterRepository.getById(id);
         return chracterMapper.chracterEntity2DTO(entity, true);
+    }
+
+    public List<ChracterDTO> getByFilters(String name,Integer age,Long filmId){
+        ChracterFiltesrDTO filters = new ChracterFiltesrDTO(name, age, filmId);
+        List<ChracterEntity> entities = this.chracterRepository.findAll(this.chracterSpecification.getByFilters(filters));
+        List<ChracterDTO> dtos = chracterMapper.chracterEntityList2DTOList(entities, true);
+        return dtos;
     }
 }

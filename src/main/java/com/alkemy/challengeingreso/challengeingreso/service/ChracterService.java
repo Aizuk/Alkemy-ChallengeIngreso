@@ -16,4 +16,6 @@ public interface ChracterService {
     void delete(Long id);
 
     ChracterDTO getChracter(Long id);
+
+    List<ChracterDTO> getByFilters(String name,Integer age,Long filmId);
 }

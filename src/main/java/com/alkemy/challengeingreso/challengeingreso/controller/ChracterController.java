@@ -46,4 +46,14 @@ public class ChracterController {
         ChracterDTO detailedChracter = chracterService.getChracter(id);
         return ResponseEntity.ok().body(detailedChracter);
     }
+
+    @GetMapping
+    public ResponseEntity<List<ChracterDTO>> getChracterByFilters(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Integer age,
+            @RequestParam(required = false) Long filmId,
+    ) {
+        List<ChracterDTO> chracters = this.chracterService.getByFilters(name,age,filmId);
+        return ResponseEntity.ok(chracters);
+    }
 }
