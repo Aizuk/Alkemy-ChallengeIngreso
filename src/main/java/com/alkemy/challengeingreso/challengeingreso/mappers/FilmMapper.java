@@ -29,6 +29,7 @@ public class FilmMapper {
         );
         entity.setRating(dto.getRating());
         entity.setGenre(genreMapper.genreDTO2Entity(dto.getGenre()));
+        entity.setGenreId(dto.getGenre().getId());
         return entity;
     }
 
@@ -45,6 +46,7 @@ public class FilmMapper {
         dto.setCreationDate(entity.getCreationDate().toString());
         dto.setRating(entity.getRating());
         dto.setGenre(genreMapper.genreEntity2DTO(entity.getGenre()));
+        dto.setGenreId(entity.getGenreId());
         if (loadChracters){
             List<ChracterDTO> chracterDTOS = this.chracterMapper.chracterEntityList2DTOList((entity.getChracters()), false);
             dto.setChracters(chracterDTOS);

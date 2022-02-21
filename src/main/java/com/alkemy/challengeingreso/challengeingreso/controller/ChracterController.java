@@ -2,7 +2,6 @@ package com.alkemy.challengeingreso.challengeingreso.controller;
 
 import com.alkemy.challengeingreso.challengeingreso.dto.ChracterBasicDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.ChracterDTO;
-import com.alkemy.challengeingreso.challengeingreso.dto.GenreDTO;
 import com.alkemy.challengeingreso.challengeingreso.service.ChracterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

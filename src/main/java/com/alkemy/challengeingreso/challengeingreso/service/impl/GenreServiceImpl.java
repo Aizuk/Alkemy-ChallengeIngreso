@@ -29,4 +29,10 @@ public class GenreServiceImpl implements GenreService {
         return genreMapper.genreEntity2DTOList(entities);
     }
 
+    public GenreDTO update(Long id, GenreDTO genreDTO){
+            GenreEntity entity = genreMapper.genreDTO2Entity(genreDTO);
+            entity.setId(id);
+            GenreEntity genreUpdated = genreRepository.saveAndFlush(entity);
+        return genreMapper.genreEntity2DTO(entity);
+    }
 }
