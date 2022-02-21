@@ -25,4 +25,9 @@ public class FilmServiceImpl implements FilmService {
         FilmEntity filmSaved = filmRepository.save(entity);
         return filmMapper.filmEntity2DTO(filmSaved, false);
     }
+
+    public FilmDTO getFilm(Long id){
+        FilmEntity entity = filmRepository.getById(id);
+        return filmMapper.filmEntity2DTO(entity, true);
+    }
 }

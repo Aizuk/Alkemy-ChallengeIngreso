@@ -41,4 +41,9 @@ public class ChracterServiceImpl implements ChracterService {
     public void delete(Long id){
         this.chracterRepository.deleteById(id);
     }
+
+    public ChracterDTO getChracter(Long id){
+        ChracterEntity entity = chracterRepository.getById(id);
+        return chracterMapper.chracterEntity2DTO(entity, true);
+    }
 }

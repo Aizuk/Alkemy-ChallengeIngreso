@@ -14,4 +14,6 @@ public interface ChracterService {
     ChracterDTO update(Long id, ChracterDTO dto);
 
     void delete(Long id);
+
+    ChracterDTO getChracter(Long id);
 }

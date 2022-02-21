@@ -6,5 +6,5 @@ public interface FilmService {
 
     FilmDTO save(FilmDTO film);
 
-
+    FilmDTO getFilm(Long id);
 }

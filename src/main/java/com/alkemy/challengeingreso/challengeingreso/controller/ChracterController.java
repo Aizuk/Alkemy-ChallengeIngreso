@@ -40,4 +40,10 @@ public class ChracterController {
         this.chracterService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ChracterDTO> getChracter(@PathVariable Long id){
+        ChracterDTO detailedChracter = chracterService.getChracter(id);
+        return ResponseEntity.ok().body(detailedChracter);
+    }
 }
