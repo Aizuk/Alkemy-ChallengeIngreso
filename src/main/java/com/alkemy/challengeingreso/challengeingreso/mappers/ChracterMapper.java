@@ -35,7 +35,7 @@ public class ChracterMapper {
         dto.setName(entity.getName());
         dto.setAge(entity.getAge());
         dto.setWeight(entity.getWeight());
-        dto.setStory(dto.getStory());
+        dto.setStory(entity.getStory());
         if (loadFilms) {
             List<FilmDTO> filmsDTO = this.filmMapper.filmEntityList2DTOList(entity.getFilms(), false);
             dto.setFilms(filmsDTO);
