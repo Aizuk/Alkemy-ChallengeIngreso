@@ -37,10 +37,9 @@ public class ChracterServiceImpl implements ChracterService {
     }
 
     public ChracterDTO update(Long id, ChracterDTO dto){
-        ChracterEntity entity = chracterMapper.chracterDTO2Entity(dto);
-        entity.setId(id);
-        ChracterEntity chracterUpdated = chracterRepository.saveAndFlush(entity);
-        return chracterMapper.chracterEntity2DTO(chracterUpdated, false);
+        ChracterEntity entity = chracterMapper.updateValues(id, dto);
+        ChracterEntity chracterUpdated = chracterRepository.save(entity);
+        return chracterMapper.chracterEntity2DTO(chracterUpdated, true);
     }
 
     public void delete(Long id){

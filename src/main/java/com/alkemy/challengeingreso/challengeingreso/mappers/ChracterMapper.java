@@ -74,4 +74,11 @@ public class ChracterMapper {
         }
         return dtos;
     }
+
+    public ChracterEntity updateValues(Long id, ChracterDTO values){
+        ChracterEntity entity = chracterDTO2Entity(values);
+        entity.setId(id);
+        entity.setFilms(filmMapper.filmDTOList2EntityList(values.getFilms()));
+        return entity;
+    }
 }

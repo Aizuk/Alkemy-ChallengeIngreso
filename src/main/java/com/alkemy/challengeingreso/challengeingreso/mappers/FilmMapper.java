@@ -79,4 +79,12 @@ public class FilmMapper {
         }
         return dtos;
     }
+
+    public List<FilmEntity> filmDTOList2EntityList(List<FilmDTO> dtos){
+        List<FilmEntity> entities = new ArrayList<>();
+        for (FilmDTO dto: dtos) {
+            entities.add(filmDTO2Entity(dto));
+        }
+        return entities;
+    }
 }
