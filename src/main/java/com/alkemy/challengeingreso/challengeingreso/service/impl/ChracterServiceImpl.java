@@ -2,7 +2,8 @@ package com.alkemy.challengeingreso.challengeingreso.service.impl;
 
 import com.alkemy.challengeingreso.challengeingreso.dto.ChracterBasicDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.ChracterDTO;
-import com.alkemy.challengeingreso.challengeingreso.dto.ChracterFiltesrDTO;
+import com.alkemy.challengeingreso.challengeingreso.dto.ChracterFiltersDTO;
+import com.alkemy.challengeingreso.challengeingreso.dto.FilmDTO;
 import com.alkemy.challengeingreso.challengeingreso.entities.ChracterEntity;
 import com.alkemy.challengeingreso.challengeingreso.mappers.ChracterMapper;
 import com.alkemy.challengeingreso.challengeingreso.repositories.ChracterRepository;
@@ -51,10 +52,10 @@ public class ChracterServiceImpl implements ChracterService {
         return chracterMapper.chracterEntity2DTO(entity, true);
     }
 
-    public List<ChracterDTO> getByFilters(String name,Integer age,Long filmId){
-        ChracterFiltesrDTO filters = new ChracterFiltesrDTO(name, age, filmId);
+    public List<ChracterBasicDTO> getByFilters(String name,Integer age,List<FilmDTO> films){
+        ChracterFiltersDTO filters = new ChracterFiltersDTO(name, age, films);
         List<ChracterEntity> entities = this.chracterRepository.findAll(this.chracterSpecification.getByFilters(filters));
-        List<ChracterDTO> dtos = chracterMapper.chracterEntityList2DTOList(entities, true);
+        List<ChracterBasicDTO> dtos = chracterMapper.chracterEntityList2BasicDTOList(entities);
         return dtos;
     }
 }

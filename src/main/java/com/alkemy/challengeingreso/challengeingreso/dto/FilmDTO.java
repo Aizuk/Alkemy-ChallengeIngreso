@@ -14,6 +14,5 @@ public class FilmDTO {
     private String creationDate;
     private Integer rating;
     private GenreDTO genre;
-    private Long genreId;
     private List<ChracterDTO> chracters;
 }

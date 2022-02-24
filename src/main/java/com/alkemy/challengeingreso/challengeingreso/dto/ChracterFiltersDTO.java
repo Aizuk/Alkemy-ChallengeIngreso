@@ -3,16 +3,18 @@ package com.alkemy.challengeingreso.challengeingreso.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
-public class ChracterFiltesrDTO {
+public class ChracterFiltersDTO {
     private String name;
     private Integer age;
-    private Long filmId;
+    private List<FilmDTO> films;
 
-    public ChracterFiltesrDTO(String name, Integer age, Long filmId){
+    public ChracterFiltersDTO(String name, Integer age, List<FilmDTO> films){
         this.name = name;
         this.age = age;
-        this.filmId = filmId;
+        this.films = films;
     }
 }

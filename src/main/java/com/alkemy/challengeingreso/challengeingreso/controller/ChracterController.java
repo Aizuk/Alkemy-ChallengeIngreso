@@ -2,6 +2,7 @@ package com.alkemy.challengeingreso.challengeingreso.controller;
 
 import com.alkemy.challengeingreso.challengeingreso.dto.ChracterBasicDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.ChracterDTO;
+import com.alkemy.challengeingreso.challengeingreso.dto.FilmDTO;
 import com.alkemy.challengeingreso.challengeingreso.service.ChracterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,11 +18,11 @@ public class ChracterController {
     @Autowired
     private ChracterService chracterService;
 
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<List<ChracterBasicDTO>> getAllBasic(){
         List<ChracterBasicDTO> dtos = chracterService.getAllChracterBasic();
         return ResponseEntity.ok().body(dtos);
-    }
+    }*/
 
     @PostMapping
     public ResponseEntity<ChracterDTO> save(@RequestBody ChracterDTO chracter){
@@ -48,12 +49,12 @@ public class ChracterController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ChracterDTO>> getChracterByFilters(
+    public ResponseEntity<List<ChracterBasicDTO>> getChracterByFilters(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) Integer age,
-            @RequestParam(required = false) Long filmId,
+            @RequestParam(required = false) List<FilmDTO> films
     ) {
-        List<ChracterDTO> chracters = this.chracterService.getByFilters(name,age,filmId);
+        List<ChracterBasicDTO> chracters = this.chracterService.getByFilters(name,age,films);
         return ResponseEntity.ok(chracters);
     }
 }
