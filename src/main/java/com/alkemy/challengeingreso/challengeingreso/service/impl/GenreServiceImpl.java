@@ -35,4 +35,13 @@ public class GenreServiceImpl implements GenreService {
             GenreEntity genreUpdated = genreRepository.saveAndFlush(entity);
         return genreMapper.genreEntity2DTO(entity);
     }
+
+    public GenreEntity retrieveOrMap(GenreDTO dto){
+        if(genreRepository.existsById(dto.getId())){
+            return genreRepository.getById(dto.getId());
+        }
+        else{
+            return genreMapper.genreDTO2Entity(dto);
+        }
+    }
 }

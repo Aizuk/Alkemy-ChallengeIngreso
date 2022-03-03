@@ -12,4 +12,6 @@ public interface GenreService {
     List<GenreDTO> getAllGenres();
 
     GenreDTO update(Long id, GenreDTO dto);
+
+    GenreEntity retrieveOrMap(GenreDTO dto);
 }

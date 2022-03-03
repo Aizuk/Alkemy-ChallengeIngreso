@@ -6,6 +6,7 @@ import com.alkemy.challengeingreso.challengeingreso.dto.FilmBasicDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.FilmDTO;
 import com.alkemy.challengeingreso.challengeingreso.entities.ChracterEntity;
 import com.alkemy.challengeingreso.challengeingreso.entities.FilmEntity;
+import com.alkemy.challengeingreso.challengeingreso.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +22,8 @@ public class FilmMapper {
     private ChracterMapper chracterMapper;
     @Autowired
     private GenreMapper genreMapper;
+    @Autowired
+    private GenreService genreService;
 
     public FilmEntity filmDTO2Entity(FilmDTO dto){
         FilmEntity entity = new FilmEntity();
@@ -30,7 +33,7 @@ public class FilmMapper {
                 this.string2LocalDate(dto.getCreationDate())
         );
         entity.setRating(dto.getRating());
-        entity.setGenre(genreMapper.genreDTO2Entity(dto.getGenre()));
+        //entity.setGenre(genreMapper.genreDTO2Entity(dto.getGenre()));
         //entity.setGenreId(dto.getGenre().getId());
         return entity;
     }

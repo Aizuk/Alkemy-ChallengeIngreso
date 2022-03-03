@@ -26,9 +26,9 @@ public class FilmServiceImpl implements FilmService {
 
     public FilmDTO save(FilmDTO dto){
         FilmEntity entity = filmMapper.filmDTO2Entity(dto);
-        //entity.getGenre().setId(dto.getId());
+        entity.setGenre(genreService.retrieveOrMap(dto.getGenre()));
         FilmEntity filmSaved = filmRepository.save(entity);
-        return filmMapper.filmEntity2DTO(filmSaved, false);
+        return filmMapper.filmEntity2DTO(filmSaved, true);
     }
 
     public FilmDTO getFilm(Long id){

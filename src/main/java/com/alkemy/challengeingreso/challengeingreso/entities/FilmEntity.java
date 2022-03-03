@@ -35,7 +35,7 @@ public class FilmEntity {
 
     private Integer rating;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "genre_id")
     private GenreEntity genre;
 
