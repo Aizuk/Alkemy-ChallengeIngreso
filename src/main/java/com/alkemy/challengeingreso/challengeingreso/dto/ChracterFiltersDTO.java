@@ -4,17 +4,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
 public class ChracterFiltersDTO {
     private String name;
     private Integer age;
-    private List<FilmDTO> films;
+    private Set<Long> filmsId;
 
-    public ChracterFiltersDTO(String name, Integer age, List<FilmDTO> films){
+    public ChracterFiltersDTO(String name, Integer age, Set<Long> filmId){
         this.name = name;
         this.age = age;
-        this.films = films;
+        this.filmsId = filmsId;
     }
 }

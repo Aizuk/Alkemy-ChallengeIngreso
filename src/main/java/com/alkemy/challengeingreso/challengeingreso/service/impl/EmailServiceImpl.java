@@ -30,6 +30,7 @@ public class EmailServiceImpl implements EmailService {
 
         String apiKey = environment.getProperty("EMAIL_API_KEY");
 
+        //TODO: aca estaria bueno una clase que arme el mail
         Email fromEmail = new Email(emailSender);
         Email toEmail = new Email(to);
         Content content = new Content(
@@ -47,11 +48,14 @@ public class EmailServiceImpl implements EmailService {
             request.setBody(mail.build());
             Response response = sendGrid.api(request);
 
+            /* TODO: evaluar si rinde implementar Log4j, caso contrario voletear
             System.out.println(response.getStatusCode());
             System.out.println(response.getBody());
             System.out.println(response.getHeaders());
+
+             */
         } catch (IOException exception) {
-            System.out.println("Error trying  to send email");
+            System.out.println("Error trying  to send email");  //TODO: Log4j
         }
     }
 }

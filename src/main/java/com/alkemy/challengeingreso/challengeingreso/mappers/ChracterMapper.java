@@ -25,6 +25,7 @@ public class ChracterMapper {
         entity.setAge(dto.getAge());
         entity.setWeight(dto.getWeight());
         entity.setStory(dto.getStory());
+        entity.setFilms(filmMapper.filmDTOList2EntityList((dto.getFilms())));
         return entity;
     }
 

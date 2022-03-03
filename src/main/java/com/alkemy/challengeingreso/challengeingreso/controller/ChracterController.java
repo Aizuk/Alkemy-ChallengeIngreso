@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("characters")
@@ -52,9 +53,9 @@ public class ChracterController {
     public ResponseEntity<List<ChracterBasicDTO>> getChracterByFilters(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) Integer age,
-            @RequestParam(required = false) List<FilmDTO> films
+            @RequestParam(required = false) Set<Long> filmsId
     ) {
-        List<ChracterBasicDTO> chracters = this.chracterService.getByFilters(name,age,films);
+        List<ChracterBasicDTO> chracters = this.chracterService.getByFilters(name,age,filmsId);
         return ResponseEntity.ok(chracters);
     }
 }

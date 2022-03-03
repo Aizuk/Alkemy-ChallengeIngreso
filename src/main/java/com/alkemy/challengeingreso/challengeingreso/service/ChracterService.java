@@ -5,6 +5,7 @@ import com.alkemy.challengeingreso.challengeingreso.dto.ChracterDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.FilmDTO;
 
 import java.util.List;
+import java.util.Set;
 
 public interface ChracterService {
 
@@ -18,5 +19,5 @@ public interface ChracterService {
 
     ChracterDTO getChracter(Long id);
 
-    List<ChracterBasicDTO> getByFilters(String name,Integer age,List<FilmDTO> films);
+    List<ChracterBasicDTO> getByFilters(String name, Integer age, Set<Long> filmsId);
 }

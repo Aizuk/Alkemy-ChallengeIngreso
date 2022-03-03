@@ -1,12 +1,10 @@
 package com.alkemy.challengeingreso.challengeingreso.service.impl;
 
-import com.alkemy.challengeingreso.challengeingreso.dto.ChracterDTO;
-import com.alkemy.challengeingreso.challengeingreso.dto.FilmBasicDTO;
-import com.alkemy.challengeingreso.challengeingreso.dto.FilmDTO;
-import com.alkemy.challengeingreso.challengeingreso.entities.ChracterEntity;
+import com.alkemy.challengeingreso.challengeingreso.dto.*;
 import com.alkemy.challengeingreso.challengeingreso.entities.FilmEntity;
 import com.alkemy.challengeingreso.challengeingreso.mappers.FilmMapper;
 import com.alkemy.challengeingreso.challengeingreso.repositories.FilmRepository;
+import com.alkemy.challengeingreso.challengeingreso.repositories.specifications.FilmSpecification;
 import com.alkemy.challengeingreso.challengeingreso.service.FilmService;
 import com.alkemy.challengeingreso.challengeingreso.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +21,12 @@ public class FilmServiceImpl implements FilmService {
     private FilmRepository filmRepository;
     @Autowired
     private GenreService genreService;
+    @Autowired
+    FilmSpecification filmSpecification;
 
     public FilmDTO save(FilmDTO dto){
         FilmEntity entity = filmMapper.filmDTO2Entity(dto);
-        entity.getGenre().setId(dto.getId());
+        //entity.getGenre().setId(dto.getId());
         FilmEntity filmSaved = filmRepository.save(entity);
         return filmMapper.filmEntity2DTO(filmSaved, false);
     }
@@ -50,5 +50,12 @@ public class FilmServiceImpl implements FilmService {
         entity.setId(id);
         FilmEntity filmUpdated = filmRepository.saveAndFlush(entity);
         return filmMapper.filmEntity2DTO(filmUpdated, false);
+    }
+
+    public List<FilmBasicDTO> getFilmByFilters(String name, Long genreId, String order){
+        FilmFiltersDTO filters = new FilmFiltersDTO(name, genreId, order);
+        List<FilmEntity> entities = this.filmRepository.findAll(this.filmSpecification.getByFilters(filters));
+        List<FilmBasicDTO> dtos = filmMapper.filmEntityList2DTOBasicList(entities);
+        return dtos;
     }
 }

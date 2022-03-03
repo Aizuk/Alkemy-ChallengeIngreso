@@ -1,6 +1,5 @@
 package com.alkemy.challengeingreso.challengeingreso.service;
 
-import com.alkemy.challengeingreso.challengeingreso.dto.ChracterDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.FilmBasicDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.FilmDTO;
 
@@ -17,4 +16,6 @@ public interface FilmService {
     void delete(Long id);
 
     FilmDTO update(Long id, FilmDTO dto);
+
+    List<FilmBasicDTO> getFilmByFilters(String name, Long genreId, String order);
 }

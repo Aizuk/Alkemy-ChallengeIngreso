@@ -22,22 +22,30 @@ public class ChracterSpecification {
     public Specification<ChracterEntity> getByFilters(ChracterFiltersDTO filtersDTO){
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
-            if (StringUtils.hasLength(filtersDTO.getName())){
+            if (StringUtils.hasLength(filtersDTO.getName().trim())){
                 predicates.add(
                         criteriaBuilder.like(
                                criteriaBuilder.lower(root.get("name")),
-                            "%" + filtersDTO.getName().toLowerCase() + "%")
+                            "%" + filtersDTO.getName().trim().toLowerCase() + "%")
                 );
             }
             if (filtersDTO.getAge()!=null){
                 predicates.add(
                         criteriaBuilder.equal(root.get("age"), filtersDTO.getAge()));
             }
-            if (!CollectionUtils.isEmpty(filtersDTO.getFilms())){
+            if (!CollectionUtils.isEmpty(filtersDTO.getFilmsId())){
                 Join<FilmEntity, ChracterEntity> join = root.join("films", JoinType.INNER);
                 Expression<String> filmsId = join.get("id");
-                predicates.add(filmsId.in(filtersDTO.getFilms()));
+                predicates.add(filmsId.in(filtersDTO.getFilmsId()));
             }
+            /*
+            if (!CollectionUtils.isEmpty(filtersDTO.getFilmId())){
+                Join<FilmEntity, ChracterEntity> join = root.join("films", JoinType.INNER);
+                Expression<String> filmsId = join.get("id");
+                predicates.add(filmsId.in(filtersDTO.getFilmId()));
+            }
+
+             */
 
             query.distinct(true);
 

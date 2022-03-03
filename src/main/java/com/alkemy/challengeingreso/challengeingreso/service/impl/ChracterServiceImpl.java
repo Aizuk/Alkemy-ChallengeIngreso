@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ChracterServiceImpl implements ChracterService {
@@ -27,7 +28,7 @@ public class ChracterServiceImpl implements ChracterService {
     public ChracterDTO save(ChracterDTO dto){
         ChracterEntity entity = chracterMapper.chracterDTO2Entity(dto);
         ChracterEntity chracterSaved = chracterRepository.save(entity);
-        return chracterMapper.chracterEntity2DTO(chracterSaved, false);
+        return chracterMapper.chracterEntity2DTO(chracterSaved, true);
     }
 
     @Override
@@ -51,8 +52,8 @@ public class ChracterServiceImpl implements ChracterService {
         return chracterMapper.chracterEntity2DTO(entity, true);
     }
 
-    public List<ChracterBasicDTO> getByFilters(String name,Integer age,List<FilmDTO> films){
-        ChracterFiltersDTO filters = new ChracterFiltersDTO(name, age, films);
+    public List<ChracterBasicDTO> getByFilters(String name, Integer age, Set<Long> filmsId){
+        ChracterFiltersDTO filters = new ChracterFiltersDTO(name, age, filmsId);
         List<ChracterEntity> entities = this.chracterRepository.findAll(this.chracterSpecification.getByFilters(filters));
         List<ChracterBasicDTO> dtos = chracterMapper.chracterEntityList2BasicDTOList(entities);
         return dtos;

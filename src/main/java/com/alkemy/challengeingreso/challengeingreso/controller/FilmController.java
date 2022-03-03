@@ -1,5 +1,6 @@
 package com.alkemy.challengeingreso.challengeingreso.controller;
 
+import com.alkemy.challengeingreso.challengeingreso.dto.ChracterBasicDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.ChracterDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.FilmBasicDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.FilmDTO;
@@ -36,6 +37,16 @@ public class FilmController {
         List<FilmBasicDTO> dtos = filmService.getAllFilmBasic();
         return ResponseEntity.ok().body(dtos);
     }
+
+    /*@GetMapping
+    public ResponseEntity<List<FilmBasicDTO>> getFilmByFilters(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Long genreId,
+            @RequestParam(required = false, defaultValue = "ASC") String order
+    ) {
+        List<FilmBasicDTO> films = this.filmService.getFilmByFilters(name, genreId, order);
+        return ResponseEntity.ok(films);
+    }*/
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){

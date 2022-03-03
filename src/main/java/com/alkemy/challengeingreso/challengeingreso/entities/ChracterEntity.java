@@ -33,7 +33,10 @@ public class ChracterEntity {
 
     private String story;
 
-    @ManyToMany(mappedBy = "chracters", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "chracters", cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
     private List<FilmEntity> films = new ArrayList<>();
 
     private Boolean deleted = Boolean.FALSE;
