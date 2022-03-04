@@ -55,7 +55,7 @@ public class ChracterController {
             @RequestParam(required = false) Integer age,
             @RequestParam(required = false) Set<Long> filmsId
     ) {
-        List<ChracterBasicDTO> chracters = this.chracterService.getByFilters(name,age,filmsId);
-        return ResponseEntity.ok(chracters);
+        List<ChracterBasicDTO> chracters = chracterService.getByFilters(name,age,filmsId);
+        return ResponseEntity.ok().body(chracters);
     }
 }

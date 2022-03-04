@@ -31,22 +31,22 @@ public class FilmController {
         FilmDTO detailedFilm = filmService.getFilm(id);
         return ResponseEntity.ok().body(detailedFilm);
     }
-
+/*
     @GetMapping
     public ResponseEntity<List<FilmBasicDTO>> getAllBasic(){
         List<FilmBasicDTO> dtos = filmService.getAllFilmBasic();
         return ResponseEntity.ok().body(dtos);
-    }
+    }*/
 
-    /*@GetMapping
+    @GetMapping
     public ResponseEntity<List<FilmBasicDTO>> getFilmByFilters(
-            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String title,
             @RequestParam(required = false) Long genreId,
             @RequestParam(required = false, defaultValue = "ASC") String order
     ) {
-        List<FilmBasicDTO> films = this.filmService.getFilmByFilters(name, genreId, order);
+        List<FilmBasicDTO> films = this.filmService.getFilmByFilters(title, genreId, order);
         return ResponseEntity.ok(films);
-    }*/
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){

@@ -54,7 +54,7 @@ public class ChracterServiceImpl implements ChracterService {
 
     public List<ChracterBasicDTO> getByFilters(String name, Integer age, Set<Long> filmsId){
         ChracterFiltersDTO filters = new ChracterFiltersDTO(name, age, filmsId);
-        List<ChracterEntity> entities = this.chracterRepository.findAll(this.chracterSpecification.getByFilters(filters));
+        List<ChracterEntity> entities = this.chracterRepository.findAll(chracterSpecification.getByFilters(filters));
         List<ChracterBasicDTO> dtos = chracterMapper.chracterEntityList2BasicDTOList(entities);
         return dtos;
     }

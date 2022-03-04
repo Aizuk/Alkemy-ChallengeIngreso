@@ -36,12 +36,7 @@ public class GenreServiceImpl implements GenreService {
         return genreMapper.genreEntity2DTO(entity);
     }
 
-    public GenreEntity retrieveOrMap(GenreDTO dto){
-        if(genreRepository.existsById(dto.getId())){
-            return genreRepository.getById(dto.getId());
-        }
-        else{
-            return genreMapper.genreDTO2Entity(dto);
-        }
+    public GenreEntity retrieve(GenreDTO dto){
+        return genreRepository.getById(dto.getId());
     }
 }

@@ -16,15 +16,17 @@ public class FilmSpecification {
     public Specification<FilmEntity> getByFilters(FilmFiltersDTO filtersDTO){
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
-            if (StringUtils.hasLength(filtersDTO.getName())){
-                predicates.add(
-                        criteriaBuilder.like(
-                                criteriaBuilder.lower(root.get("name")),
-                                "%" + filtersDTO.getName().toLowerCase() +"%"
-                        )
-                );
+            if(filtersDTO.getTitle()!=null) {
+                if (StringUtils.hasLength(filtersDTO.getTitle())) {
+                    predicates.add(
+                            criteriaBuilder.like(
+                                    criteriaBuilder.lower(root.get("title")),
+                                    "%" + filtersDTO.getTitle().toLowerCase() + "%"
+                            )
+                    );
+                }
             }
-            String orderByField = "name";
+            String orderByField = "title";
             query.orderBy(
                     filtersDTO.isASC() ?
                             criteriaBuilder.asc(root.get(orderByField)) :

@@ -17,5 +17,5 @@ public interface FilmService {
 
     FilmDTO update(Long id, FilmDTO dto);
 
-    List<FilmBasicDTO> getFilmByFilters(String name, Long genreId, String order);
+    List<FilmBasicDTO> getFilmByFilters(String title, Long genreId, String order);
 }

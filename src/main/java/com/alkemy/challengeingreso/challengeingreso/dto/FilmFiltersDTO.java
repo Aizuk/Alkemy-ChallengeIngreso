@@ -6,12 +6,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FilmFiltersDTO {
-    private String name;
+    private String title;
     private Long id;
     private String order;
 
-    public FilmFiltersDTO (String name, Long id, String order){
-        this.name = name;
+    public FilmFiltersDTO (String title, Long id, String order){
+        this.title = title;
         this.id = id;
         this.order = order;
     }

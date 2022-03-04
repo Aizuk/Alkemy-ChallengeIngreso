@@ -26,7 +26,7 @@ public class FilmServiceImpl implements FilmService {
 
     public FilmDTO save(FilmDTO dto){
         FilmEntity entity = filmMapper.filmDTO2Entity(dto);
-        entity.setGenre(genreService.retrieveOrMap(dto.getGenre()));
+        entity.setGenre(genreService.retrieve(dto.getGenre()));
         FilmEntity filmSaved = filmRepository.save(entity);
         return filmMapper.filmEntity2DTO(filmSaved, true);
     }
@@ -52,9 +52,9 @@ public class FilmServiceImpl implements FilmService {
         return filmMapper.filmEntity2DTO(filmUpdated, false);
     }
 
-    public List<FilmBasicDTO> getFilmByFilters(String name, Long genreId, String order){
-        FilmFiltersDTO filters = new FilmFiltersDTO(name, genreId, order);
-        List<FilmEntity> entities = this.filmRepository.findAll(this.filmSpecification.getByFilters(filters));
+    public List<FilmBasicDTO> getFilmByFilters(String title, Long genreId, String order){
+        FilmFiltersDTO filters = new FilmFiltersDTO(title, genreId, order);
+        List<FilmEntity> entities = this.filmRepository.findAll(filmSpecification.getByFilters(filters));
         List<FilmBasicDTO> dtos = filmMapper.filmEntityList2DTOBasicList(entities);
         return dtos;
     }
