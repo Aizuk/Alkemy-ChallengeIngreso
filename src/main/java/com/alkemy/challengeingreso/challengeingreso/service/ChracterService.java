@@ -20,4 +20,6 @@ public interface ChracterService {
     ChracterDTO getChracter(Long id);
 
     List<ChracterBasicDTO> getByFilters(String name, Integer age, Set<Long> filmsId);
+
+    ChracterDTO addFilm(Long id, Long filmId);
 }

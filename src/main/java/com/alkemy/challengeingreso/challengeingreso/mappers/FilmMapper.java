@@ -1,9 +1,6 @@
 package com.alkemy.challengeingreso.challengeingreso.mappers;
 
-import com.alkemy.challengeingreso.challengeingreso.dto.ChracterBasicDTO;
-import com.alkemy.challengeingreso.challengeingreso.dto.ChracterDTO;
-import com.alkemy.challengeingreso.challengeingreso.dto.FilmBasicDTO;
-import com.alkemy.challengeingreso.challengeingreso.dto.FilmDTO;
+import com.alkemy.challengeingreso.challengeingreso.dto.*;
 import com.alkemy.challengeingreso.challengeingreso.entities.ChracterEntity;
 import com.alkemy.challengeingreso.challengeingreso.entities.FilmEntity;
 import com.alkemy.challengeingreso.challengeingreso.service.GenreService;
@@ -27,14 +24,14 @@ public class FilmMapper {
 
     public FilmEntity filmDTO2Entity(FilmDTO dto){
         FilmEntity entity = new FilmEntity();
+        entity.setId(dto.getId());
         entity.setImage(dto.getImage());
         entity.setTitle(dto.getTitle());
         entity.setCreationDate(
                 this.string2LocalDate(dto.getCreationDate())
         );
         entity.setRating(dto.getRating());
-        //entity.setGenre(genreMapper.genreDTO2Entity(dto.getGenre()));
-        //entity.setGenreId(dto.getGenre().getId());
+        entity.setGenre(genreService.retrieve(dto.getGenre()));
         return entity;
     }
 

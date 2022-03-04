@@ -10,6 +10,7 @@ import com.alkemy.challengeingreso.challengeingreso.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -49,7 +50,7 @@ public class FilmServiceImpl implements FilmService {
         FilmEntity entity = filmMapper.filmDTO2Entity(dto);
         entity.setId(id);
         FilmEntity filmUpdated = filmRepository.saveAndFlush(entity);
-        return filmMapper.filmEntity2DTO(filmUpdated, false);
+        return filmMapper.filmEntity2DTO(filmUpdated, true);
     }
 
     public List<FilmBasicDTO> getFilmByFilters(String title, Long genreId, String order){
@@ -57,5 +58,31 @@ public class FilmServiceImpl implements FilmService {
         List<FilmEntity> entities = this.filmRepository.findAll(filmSpecification.getByFilters(filters));
         List<FilmBasicDTO> dtos = filmMapper.filmEntityList2DTOBasicList(entities);
         return dtos;
+    }
+
+    public FilmEntity getFilmEntity(Long id) {
+        return filmRepository.getById(id);
+    }
+
+    public FilmEntity retrieve(FilmDTO dto){
+        Long id = dto.getId();
+        FilmEntity example = filmRepository.getById(id);
+        return filmRepository.getById(dto.getId());
+    }
+
+    public List<FilmEntity> retrieveOrMapDTOList2EntityList(List<FilmDTO> dtos){
+        List<FilmEntity> entities = new ArrayList<>();
+        for (FilmDTO dto: dtos) {
+            entities.add(retrieveOrMapDTO2Entity(dto));
+        }
+        return entities;
+    }
+
+    public FilmEntity retrieveOrMapDTO2Entity(FilmDTO dto){
+        if(dto.getId()!=null){
+            return retrieve(dto);
+        } else {
+            return filmMapper.filmDTO2Entity(dto);
+        }
     }
 }

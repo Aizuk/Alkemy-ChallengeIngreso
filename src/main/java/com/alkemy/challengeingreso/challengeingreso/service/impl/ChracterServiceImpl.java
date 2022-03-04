@@ -5,10 +5,13 @@ import com.alkemy.challengeingreso.challengeingreso.dto.ChracterDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.ChracterFiltersDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.FilmDTO;
 import com.alkemy.challengeingreso.challengeingreso.entities.ChracterEntity;
+import com.alkemy.challengeingreso.challengeingreso.entities.FilmEntity;
 import com.alkemy.challengeingreso.challengeingreso.mappers.ChracterMapper;
+import com.alkemy.challengeingreso.challengeingreso.mappers.FilmMapper;
 import com.alkemy.challengeingreso.challengeingreso.repositories.ChracterRepository;
 import com.alkemy.challengeingreso.challengeingreso.repositories.specifications.ChracterSpecification;
 import com.alkemy.challengeingreso.challengeingreso.service.ChracterService;
+import com.alkemy.challengeingreso.challengeingreso.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +27,10 @@ public class ChracterServiceImpl implements ChracterService {
     private ChracterRepository chracterRepository;
     @Autowired
     ChracterSpecification chracterSpecification;
+    @Autowired
+    private FilmService filmService;
+    @Autowired
+    private FilmMapper filmMapper;
 
     public ChracterDTO save(ChracterDTO dto){
         ChracterEntity entity = chracterMapper.chracterDTO2Entity(dto);
@@ -57,5 +64,15 @@ public class ChracterServiceImpl implements ChracterService {
         List<ChracterEntity> entities = this.chracterRepository.findAll(chracterSpecification.getByFilters(filters));
         List<ChracterBasicDTO> dtos = chracterMapper.chracterEntityList2BasicDTOList(entities);
         return dtos;
+    }
+
+    public ChracterDTO addFilm(Long id, Long filmId){
+        FilmDTO filmDTO = filmService.getFilm(filmId);
+        //FilmEntity filmEntity = filmService.retrieve(filmDTO); // filmService.getFilmEntity(filmId);
+        FilmEntity filmEntity = filmMapper.filmDTO2Entity(filmDTO);
+        ChracterEntity chracterEntity = chracterRepository.getById(id);
+        chracterEntity.addFilm(filmEntity);
+        ChracterEntity entitySaved = chracterRepository.save(chracterEntity);
+        return chracterMapper.chracterEntity2DTO(entitySaved, true);
     }
 }

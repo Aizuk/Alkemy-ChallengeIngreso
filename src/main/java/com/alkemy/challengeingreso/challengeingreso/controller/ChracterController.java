@@ -9,21 +9,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
 @RestController
 @RequestMapping("characters")
-public class ChracterController {
+public class ChracterController implements Serializable {
 
     @Autowired
     private ChracterService chracterService;
-
-    /*@GetMapping
-    public ResponseEntity<List<ChracterBasicDTO>> getAllBasic(){
-        List<ChracterBasicDTO> dtos = chracterService.getAllChracterBasic();
-        return ResponseEntity.ok().body(dtos);
-    }*/
 
     @PostMapping
     public ResponseEntity<ChracterDTO> save(@RequestBody ChracterDTO chracter){
@@ -57,5 +52,11 @@ public class ChracterController {
     ) {
         List<ChracterBasicDTO> chracters = chracterService.getByFilters(name,age,filmsId);
         return ResponseEntity.ok().body(chracters);
+    }
+
+    @PutMapping("/addFilm/{id}")
+    public ResponseEntity<ChracterDTO> addFilm(@PathVariable Long id, @RequestParam(required = true) Long filmId){
+        ChracterDTO chracterUpdated = chracterService.addFilm(id,filmId);
+        return ResponseEntity.ok().body(chracterUpdated);
     }
 }

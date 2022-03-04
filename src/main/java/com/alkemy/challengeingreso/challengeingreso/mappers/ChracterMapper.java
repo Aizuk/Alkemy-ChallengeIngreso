@@ -4,6 +4,7 @@ import com.alkemy.challengeingreso.challengeingreso.dto.ChracterBasicDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.ChracterDTO;
 import com.alkemy.challengeingreso.challengeingreso.dto.FilmDTO;
 import com.alkemy.challengeingreso.challengeingreso.entities.ChracterEntity;
+import com.alkemy.challengeingreso.challengeingreso.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,8 @@ public class ChracterMapper {
 
     @Autowired
     private FilmMapper filmMapper;
+    @Autowired
+    private FilmService filmService;
 
     public ChracterEntity chracterDTO2Entity(ChracterDTO dto){
         ChracterEntity entity = new ChracterEntity();
@@ -25,7 +28,8 @@ public class ChracterMapper {
         entity.setAge(dto.getAge());
         entity.setWeight(dto.getWeight());
         entity.setStory(dto.getStory());
-        entity.setFilms(filmMapper.filmDTOList2EntityList((dto.getFilms())));
+        //entity.setFilms(filmMapper.filmDTOList2EntityList((dto.getFilms())));
+        entity.setFilms(filmService.retrieveOrMapDTOList2EntityList(dto.getFilms()));
         return entity;
     }
 
@@ -37,8 +41,8 @@ public class ChracterMapper {
         dto.setAge(entity.getAge());
         dto.setWeight(entity.getWeight());
         dto.setStory(entity.getStory());
-        if (loadFilms) {
-            List<FilmDTO> filmsDTO = this.filmMapper.filmEntityList2DTOList(entity.getFilms(), false);
+        if (loadFilms && entity.getFilms()!=null) {
+            List<FilmDTO> filmsDTO = filmMapper.filmEntityList2DTOList(entity.getFilms(), false);
             dto.setFilms(filmsDTO);
         }
         return dto;
