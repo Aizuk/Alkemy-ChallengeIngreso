@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FilmServiceImpl implements FilmService {
@@ -79,8 +80,14 @@ public class FilmServiceImpl implements FilmService {
     }
 
     public FilmEntity retrieveOrMapDTO2Entity(FilmDTO dto){
-        if(dto.getId()!=null){
+        /*if(dto.getId()!=null){
             return retrieve(dto);
+        } else {
+            return filmMapper.filmDTO2Entity(dto);
+        }*/
+        Optional<FilmEntity> entity = filmRepository.findById(dto.getId());
+        if (entity.isPresent()){
+            return entity.get();
         } else {
             return filmMapper.filmDTO2Entity(dto);
         }
